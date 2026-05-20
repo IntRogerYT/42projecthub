@@ -54,39 +54,36 @@ async function handleCallback() {
     console.log("HandleCallback iniciada...");
     console.log("Code:", code, "Verifier:", verifier);
 
-        // ... (resto de la lógica igual)
-        const body = {
-            grant_type: 'authorization_code',
-            client_id: CLIENT_ID,
-            code: code,
-            redirect_uri: REDIRECT_URI
-        };
-        
-        if (verifier) {
-            body.code_verifier = verifier;
-        }
+    // ... (resto de la lógica igual)
+    const body = {
+        grant_type: 'authorization_code',
+        client_id: CLIENT_ID,
+        code: code,
+        redirect_uri: REDIRECT_URI
+    };
+    
+    if (verifier) {
+        body.code_verifier = verifier;
+    }
 
-        // Enviar a nuestro propio backend para evitar CORS
-        console.log("Enviando petición a nuestro proxy...");
+    // Enviar a nuestro propio backend para evitar CORS
+    console.log("Enviando petición a nuestro proxy...");
 
-        const response = await fetch('/api/callback', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(body)
-        });
+    const response = await fetch('/api/callback', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+    });
 
-        const data = await response.json();
-        console.log("Token Response:", data);
+    const data = await response.json();
+    console.log("Token Response:", data);
 
-        if (data.access_token) {
-            localStorage.setItem('42_access_token', data.access_token);
-            // Redirigir a la raíz limpiando los parámetros de la URL
-            window.location.href = window.location.origin;
-        } else {
-            console.error("Error en Token Response:", data);
-        }
+    if (data.access_token) {
+        localStorage.setItem('42_access_token', data.access_token);
+        // Redirigir a la raíz limpiando los parámetros de la URL
+        window.location.href = window.location.origin;
     } else {
-        console.log("No se encontró 'code' en la URL.");
+        console.error("Error en Token Response:", data);
     }
 }
 
