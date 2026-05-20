@@ -77,8 +77,8 @@ async function handleCallback() {
             localStorage.setItem('42_access_token', data.access_token);
             // Limpiar URL
             window.history.replaceState({}, document.title, window.location.pathname);
-            // Recargar perfil
-            loadUserProfile(data.access_token);
+            // Recargar página para actualizar estado de UI
+            window.location.reload();
         } else {
             console.error("Error en Token Response:", data);
         }
