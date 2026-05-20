@@ -17,6 +17,12 @@ module.exports = async (req, res) => {
       })
     });
 
+    if (!response.ok) {
+        const errorData = await response.text();
+        console.error("42 API Error:", errorData);
+        return res.status(response.status).json({ error: 'Failed to fetch token from 42 API', details: errorData });
+    }
+
     const data = await response.json();
     res.status(response.status).json(data);
   } catch (error) {
