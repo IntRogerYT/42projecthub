@@ -34,6 +34,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     tabButtons.forEach(button => {
         button.addEventListener('click', () => {
+            if (!button.dataset.tab) return;
+            
             tabButtons.forEach(btn => btn.classList.remove('active'));
             tabContents.forEach(content => content.classList.remove('active'));
             
