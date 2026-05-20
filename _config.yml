@@ -1,0 +1,13 @@
+# 42 Project Hub - GitHub Pages Configuration
+
+# Theme
+title: 42 Project Hub
+description: Visor de proyectos de GitHub para la comunidad 42
+
+# Build settings
+markdown: kramdown
+
+# Exclude files from processing
+exclude:
+  - README.md
+  - PROJECT_STRUCTURE.md
