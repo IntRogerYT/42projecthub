@@ -3,6 +3,7 @@
     {
       "repo": "IntRogerYT/libft",
       "category": "42",
+      "author": "rcamps-v",
       "title": "Libft",
       "description": "Reimplementing the C standard library from scratch | Foundational project for the 42 curriculum | Includes functions for strings, memory, characters, and linked lists"
     }

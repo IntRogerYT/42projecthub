@@ -10,14 +10,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const title = document.getElementById('project-title').value || 'Proyecto sugerido';
             const description = document.getElementById('project-description').value || 'Sin descripción';
             
-            // Construir URL para la GitHub Issue
-            // Nota: Este formato asume que el repo tiene issues activadas.
-            // Para un repo público, la URL sería: github.com/tu-usuario/42_project_hub/issues/new
-            // Vamos a usar parámetros de query para rellenar el cuerpo
+            // Obtener usuario guardado
+            const storedUser = localStorage.getItem('42_user');
+            const author = storedUser ? JSON.parse(storedUser).login : 'Anonimo';
             
+            // Construir URL para la GitHub Issue
             const issueTitle = `Nuevo proyecto: ${title}`;
             const issueBody = `
 ## Nuevo Proyecto Sugerido
+- **Autor:** ${author}
 - **URL del Repositorio:** ${repoUrl}
 - **Categoría:** ${category}
 - **Descripción:** ${description}
