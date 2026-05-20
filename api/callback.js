@@ -24,6 +24,17 @@ module.exports = async (req, res) => {
     }
 
     const data = await response.json();
+
+    // Obtener datos del usuario
+    const userResponse = await fetch('https://api.intra.42.fr/v2/me', {
+      headers: { 'Authorization': `Bearer ${data.access_token}` }
+    });
+    
+    if (userResponse.ok) {
+        const user = await userResponse.json();
+        data.user = user; // Adjuntar datos del usuario a la respuesta
+    }
+
     res.status(response.status).json(data);
   } catch (error) {
     res.status(500).json({ error: error.message });
