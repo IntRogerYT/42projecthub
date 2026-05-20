@@ -80,6 +80,14 @@ async function handleCallback() {
 
     if (data.access_token) {
         localStorage.setItem('42_access_token', data.access_token);
+        
+        // Obtener datos del usuario
+        const userResponse = await fetch('https://api.intra.42.fr/v2/me', {
+            headers: { 'Authorization': `Bearer ${data.access_token}` }
+        });
+        const user = await userResponse.json();
+        localStorage.setItem('42_user', JSON.stringify(user));
+        
         // Redirigir a la raíz limpiando los parámetros de la URL
         window.location.href = window.location.origin;
     } else {
