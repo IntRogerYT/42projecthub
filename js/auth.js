@@ -3,7 +3,7 @@
  */
 
 const CLIENT_ID = 'u-s4t2ud-a1d5b20c0471aa69f47abf502d0a534100bb2ebd55769a76b19d40867b56e940'; // UID correcto
-const REDIRECT_URI = window.location.origin + '/callback.html'; // Necesitaremos crear este archivo o manejar la redirección
+const REDIRECT_URI = window.location.origin + '/index.html'; // Corregido para coincidir con lo registrado
 const AUTH_URL = 'https://api.intra.42.fr/oauth/authorize';
 const TOKEN_URL = 'https://api.intra.42.fr/oauth/token';
 
@@ -41,14 +41,19 @@ async function login42() {
 
 // Lógica de callback
 async function handleCallback() {
-    console.log("HandleCallback iniciada...");
     const urlParams = new URLSearchParams(window.location.search);
     const code = urlParams.get('code');
     const verifier = sessionStorage.getItem('code_verifier');
 
+    // Solo ejecutar si hay un código en la URL (estamos en el callback)
+    if (!code) {
+        console.log("No estamos en el callback (no hay 'code').");
+        return;
+    }
+
+    console.log("HandleCallback iniciada...");
     console.log("Code:", code, "Verifier:", verifier);
 
-    if (code) {
         // ... (resto de la lógica igual)
         const body = {
             grant_type: 'authorization_code',
@@ -75,10 +80,8 @@ async function handleCallback() {
 
         if (data.access_token) {
             localStorage.setItem('42_access_token', data.access_token);
-            // Limpiar URL
-            window.history.replaceState({}, document.title, window.location.pathname);
-            // Recargar página para actualizar estado de UI
-            window.location.reload();
+            // Redirigir a la raíz limpiando los parámetros de la URL
+            window.location.href = window.location.origin;
         } else {
             console.error("Error en Token Response:", data);
         }
