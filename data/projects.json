@@ -6,6 +6,13 @@
       "author": "rcamps-v",
       "title": "Libft",
       "description": "Reimplementing the C standard library from scratch | Foundational project for the 42 curriculum | Includes functions for strings, memory, characters, and linked lists"
+    },
+    {
+      "repo": "IntRogerYT/ft_printf",
+      "category": "42",
+      "author": "rcamps-v",
+      "title": "Ft_printf",
+      "description": "This project is based on replicating the printf function in C language. The printf function is used to display text on the console. You can also print variables, always indicating the type of element to be printed (character, string, integer, etc.) and passing the variable whose value you want to display as an argument. All specific information about the project is taken from the project subject."
     }
   ]
 }
