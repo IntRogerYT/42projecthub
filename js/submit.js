@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
             
             // Debes cambiar 'tu-usuario/42_project_hub' por el nombre de tu repositorio real
-            const repoIssuesUrl = `https://github.com/IntRogerYT/42_project_hub/issues/new?title=${encodeURIComponent(issueTitle)}&body=${encodeURIComponent(issueBody)}`;
+            const repoIssuesUrl = `https://github.com/IntRogerYT/42projecthub/issues/new?title=${encodeURIComponent(issueTitle)}&body=${encodeURIComponent(issueBody)}`;
             
             window.open(repoIssuesUrl, '_blank');
         });
