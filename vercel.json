@@ -1,4 +1,19 @@
 {
-  "buildCommand": "",
-  "outputDirectory": "."
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/callback.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "index.html",
+      "use": "@vercel/static"
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/api/callback",
+      "destination": "/api/callback.js"
+    }
+  ]
 }

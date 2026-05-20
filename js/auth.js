@@ -61,9 +61,10 @@ async function handleCallback() {
             body.code_verifier = verifier;
         }
 
-        console.log("Enviando petición a:", TOKEN_URL, "Body:", body);
+        // Enviar a nuestro propio backend para evitar CORS
+        console.log("Enviando petición a nuestro proxy...");
 
-        const response = await fetch(TOKEN_URL, {
+        const response = await fetch('/api/callback', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(body)
