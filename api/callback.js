@@ -13,7 +13,7 @@ module.exports = async (req, res) => {
         client_secret: process.env.CLIENT_SECRET,
         code,
         code_verifier,
-        redirect_uri: 'https://' + req.headers.host + '/callback.html'
+        redirect_uri: 'https://' + req.headers.host + '/index.html'
       })
     });
 
